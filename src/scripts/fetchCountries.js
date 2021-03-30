@@ -32,7 +32,7 @@ function onSearchCountry(e) {
         }
     }))
     .catch(error => console.log(error))
-    .finally(formSearch.reset())
+    // .finally(formSearch.reset())
 }
 
 
