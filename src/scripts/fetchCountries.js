@@ -27,7 +27,7 @@ function onSearchCountry(e) {
             renderCountriesList(searchQuery);
         } else if (searchQuery.length > 10){
             const myError = error({
-                delay: 1500,
+                delay: 1000,
                 text:"Too many matches found. Pleas enter a more specific query"
                 });            
         }
