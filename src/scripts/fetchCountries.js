@@ -1,13 +1,18 @@
 import countryCardTpl from '../templates/cardOneCountry.hbs'
 import countriesListTpl from '../templates/cardListCountries.hbs'
 import API from './api-service.js'
+import { error } from'@pnotify/core';
+import"@pnotify/core/dist/BrightTheme.css"
+import"@pnotify/core/dist/PNotify.css";
+var debounce = require('lodash.debounce');
+
 
 
 const cardContainer = document.querySelector('.js-card-container')
 const listCountries = document.querySelector('.list-countries')
 const formSearch = document.querySelector('.js-search-form')
 
-formSearch.addEventListener('input', onSearchCountry)
+formSearch.addEventListener('input', debounce(onSearchCountry, 500))
 
 
 function onSearchCountry(e) {
@@ -20,10 +25,14 @@ function onSearchCountry(e) {
             renderCountryCard(searchQuery);
         } else if (searchQuery.length <= 10) {
             renderCountriesList(searchQuery);
+        } else if (searchQuery.length > 10){
+            const myError = error({
+                text:"Too many matches found. Pleas enter a more specific query"
+                });            
         }
     }))
     .catch(error => console.log(error))
-    // .finally(formSearch.reset())
+    .finally(formSearch.reset())
 }
 
 
@@ -44,4 +53,6 @@ function clearCardContainer() {
     cardContainer.innerHTML = ''
     listCountries.innerHTML = ''
 }
+
+
 
