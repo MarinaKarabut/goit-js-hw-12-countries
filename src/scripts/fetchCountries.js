@@ -1,7 +1,7 @@
 import countryCardTpl from '../templates/cardOneCountry.hbs'
 import countriesListTpl from '../templates/cardListCountries.hbs'
 import API from './api-service.js'
-import { error } from'@pnotify/core';
+import { alert, error } from'@pnotify/core';
 import"@pnotify/core/dist/BrightTheme.css"
 import"@pnotify/core/dist/PNotify.css";
 var debounce = require('lodash.debounce');
@@ -29,10 +29,21 @@ function onSearchCountry(e) {
             const myError = error({
                 delay: 1000,
                 text:"Too many matches found. Pleas enter a more specific query"
-                });            
+                });       
+                  
         }
     }))
-    .catch(error => cardContainer.insertAdjacentHTML('beforeend',`<p class="card-text-error">No country has been found. Please enter a more specific query!<p>`)
+    .catch(error => {
+        const errorNoMatches = alert({
+            delay: 1000,
+            text:"No country has been found. Please enter a more specific query!"
+            });       
+              
+    }
+        
+        
+        
+        // cardContainer.insertAdjacentHTML('beforeend',`<p class="card-text-error">No country has been found. Please enter a more specific query!<p>`)
     )
     // .finally(formSearch.reset())
 }
