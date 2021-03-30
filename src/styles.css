@@ -20,6 +20,7 @@
   border: 1px solid lightgrey;
   border-radius: 5px;
   box-shadow: 3px 3px 3px 3px rgb(0 0 0 / 30%);
+  margin-top: 20px;
 }
 .card-text-name {
   font-weight: bold;
