@@ -32,7 +32,8 @@ function onSearchCountry(e) {
                 });            
         }
     }))
-    .catch(error => console.log(error))
+    .catch(error => cardContainer.insertAdjacentHTML('beforeend',`<p class="card-text-error">No country has been found. Please enter a more specific query!<p>`)
+    )
     // .finally(formSearch.reset())
 }
 
